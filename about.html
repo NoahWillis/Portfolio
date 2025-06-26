@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noah Willis - About</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header>
+    <a href="contact.html" class="logo">Noah</a>
+
+    <div class="menu-icon" id="menu-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+    </div>
+
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="projects.html">Projects</a>
+    </nav>
+  </header>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="home-img">
+      <img src="Images/Main.jpeg" alt="Noah Willis">
+    </div>
+    <div class="about-content">
+      <h1>About <span>Noah</span></h1>
+      <p>I'm Noah Willis, an aspiring software developer. My passion for coding began in high school, and I've been exploring programming ever since.</p>
+      <p>I am currently developing my professional skills through Access Point, where I am gaining valuable hands-on experience and working toward securing an apprenticeship. Over time, I have studied programming languages such as Python and Java, while teaching myself HTML and CSS to strengthen my front-end development abilities. I pride myself on my ability to quickly learn and adapt to new programming languages and stay up to date with the latest releases and best practices. In addition to my practical experience, I recently graduated high school in May 2025 and have since begun taking college classes at STLCC to further expand my knowledge and prepare for a successful career in software development.</p>
+      <p>I'm always eager to grow, learn new technologies, and take on new challenges in the tech world.</p>
+    </div>
+    <div class="about-icons">
+        <i class="fab fa-python" title="Python"></i>
+        <i class="fab fa-java" title="Java"></i>
+        <i class="fab fa-html5" title="HTML5"></i>
+        <i class="fab fa-css3-alt" title="CSS3"></i>
+    </div>
+  </section>
+</body>
+<script>
+  const menuIcon = document.getElementById('menu-icon');
+  const nav = document.getElementById('navbar');
+  const navLinks = nav.querySelectorAll('a');
+
+  menuIcon.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    menuIcon.classList.toggle('open'); // Add this line
+  });
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      nav.classList.remove('active');
+      menuIcon.classList.remove('open'); // Close burger when link clicked
+    });
+  });
+</script>
+</html>

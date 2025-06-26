@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Noah Willis - Projects</title>
+  <style>
+    /* Additional project-specific CSS */
+    section.projects {
+      padding: 6rem 9%;
+      background-color: black;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2.5rem;
+    }
+
+    .project-card {
+      position: relative;
+      background: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 0 10px aqua;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: scale(1.05);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-info {
+      padding: 1rem 1.5rem;
+    }
+
+    .project-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: aqua;
+    }
+
+    .project-date {
+      font-size: 1.2rem;
+      color: #aaa;
+      margin-bottom: 0.8rem;
+    }
+
+    /* Hover description overlay */
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 255, 255, 0.85);
+      color: black;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    /* Detailed project display */
+    #project-detail {
+      margin-top: 4rem;
+      background: #111;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 0 15px aqua;
+      color: white;
+      display: none;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #project-detail img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    #project-detail h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: aqua;
+    }
+
+    #project-detail p {
+      font-size: 1.5rem;
+      line-height: 1.4;
+    }
+
+    #project-detail .close-btn {
+      margin-top: 1.5rem;
+      background: aqua;
+      color: black;
+      border-radius: 30px;
+      padding: 0.7rem 1.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: background 0.3s ease;
+    }
+
+    #project-detail .close-btn:hover {
+      background: #00cccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">Noah</a>
+
+    <div class="menu-icon" id="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+    </nav>
+  </header>
+
+  <section class="projects">
+    <h1 style="font-size: 3.5rem; margin-bottom: 2rem;">My Projects</h1>
+
+    <div class="projects-grid" id="projects-grid">
+
+      <!-- Example project card -->
+      <div class="project-card" data-title="Python Text based game" data-date="December 2024" data-description="A simple text based game in python that allowed you to travel, fight and loot." data-image="Images/portfolio.png" data-full-description="A text-based adventure game where you create your own character and explore a grid-based world filled with quests, NPCs, and monsters. Interact with various locations, take on challenges, earn rewards, and battle your way through enemies. The journey builds up to an epic final boss fight that tests everything you've learned along the way." >
+        <img src="Images/weather-app.png" alt="Weather App" />
+        <div class="project-info">
+          <h3 class="project-title">Python Text based game</h3>
+          <p class="project-date">December 2024</p>
+        </div>
+        <div class="project-overlay"></div>
+      </div>
+
+      <div class="project-card" data-title="Portfolio Website" data-date="June 2025" data-description="My personal portfolio built with responsive design and interactive features." data-image="Images/portfolio.png" data-full-description="This portfolio website showcases my projects, skills, and experience. Built with HTML, CSS, and JavaScript, featuring a mobile-friendly responsive design and smooth animations." >
+        <img src="Images/portfolio.png" alt="Portfolio Website" />
+        <div class="project-info">
+          <h3 class="project-title">Portfolio Website</h3>
+          <p class="project-date">June 2025</p>
+        </div>
+        <div class="project-overlay"></div>
+      </div>
+
+      <!-- Add more projects here -->
+
+    </div>
+
+    <!-- Detailed project info display -->
+    <div id="project-detail">
+      <h2 id="detail-title"></h2>
+      <p id="detail-date"></p>
+      <img id="detail-image" src="" alt="Project Image" />
+      <p id="detail-description"></p>
+      <button class="close-btn" id="close-detail">Close</button>
+    </div>
+  </section>
+
+  <script>
+    const menuIcon = document.getElementById('menu-icon');
+    const nav = document.getElementById('navbar');
+    const navLinks = nav.querySelectorAll('a');
+
+    menuIcon.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      menuIcon.classList.toggle('open');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        nav.classList.remove('active');
+        menuIcon.classList.remove('open');
+      });
+    });
+
+    // Project cards logic
+    const projectsGrid = document.getElementById('projects-grid');
+    const projectDetail = document.getElementById('project-detail');
+    const detailTitle = document.getElementById('detail-title');
+    const detailDate = document.getElementById('detail-date');
+    const detailImage = document.getElementById('detail-image');
+    const detailDescription = document.getElementById('detail-description');
+    const closeDetailBtn = document.getElementById('close-detail');
+
+    projectsGrid.querySelectorAll('.project-card').forEach(card => {
+      const overlay = card.querySelector('.project-overlay');
+      const description = card.dataset.description;
+      overlay.textContent = description;
+
+      card.addEventListener('click', () => {
+        detailTitle.textContent = card.dataset.title;
+        detailDate.textContent = card.dataset.date;
+        detailImage.src = card.dataset.image;
+        detailImage.alt = card.dataset.title;
+        detailDescription.textContent = card.dataset.fullDescription;
+        projectDetail.style.display = 'block';
+        window.scrollTo({ top: projectDetail.offsetTop - 100, behavior: 'smooth' });
+      });
+    });
+
+    closeDetailBtn.addEventListener('click', () => {
+      projectDetail.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
